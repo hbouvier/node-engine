@@ -11,29 +11,46 @@ This module is licensed under the Apache License v2.0
 
 # Installation
 
-npm install node-options
+npm install node-engine
 
 # Include this as a module in your own project
 
-    var options = require('options');
+    var engine = require('../lib/engine'),
+        script = __dirname + '/server',
+        opts   = {
+            "workers" : 4,
+            "port"    : 3000,
+        };
+    engine.setLevel(5);
+    engine.start(script, opts);
 
-    // To overwrite the default port (e.g. 3000), you can either use the
-    // environment variable 'PORT=#' or invoke your script with the '--port=#'
-    // on the command line. If you want your script to be more verbose invoke
-    // it with the '--verbose' option.
-    var opts =  {
-                  "port"    : process.env.PORT | 3000,
-                  "verbose" : false
-                };
+# The server can be as simple as this:
 
-    // Remove the first two arguments, which are the 'node' binary and the name
-    // of your script.
-    var unknownArgs = options.parse(process.argv.slice(2), ops);
-
-    // If an argument was passed on the command line, but was not defined in
-    // the "opts" object, lets print the USAGE.
-    if (unknownArgs) {
-        if (opts.verbose) console.log('Unknown argument(s): "' + unknownArgs.join('", "') + '"');
-        console.log('USAGE: [--port #] [--verbose]');
-        process.exit(-1);
-    }
+    module.exports = function () {
+        var diag    = require('node-diagnostics'),
+            express = require('express'),
+            app     = express();
+        
+        /**
+         * Start the Web Server to provide both the HTML frontend and the JSON Web
+         * service.
+         * 
+         * @param options an object containing two properties :
+         *          options.context: The context (prefix on the URL) for the web 
+         *                           service (e.g. http://context/resource)
+         *          options.port:    The port on which the server will listen to
+         */
+        function start(options) {
+            app.get('/', function(req, res) {
+                res.end('Hello World');
+            })
+            
+            app.listen(options.port);
+        }
+    
+        return {
+            "setLevel"      : function (level) { diag = diag.setLevel(level); },
+            "unshiftPrefix" : diag.unshiftPrefix,
+            "start"         : start
+        };
+    }();
