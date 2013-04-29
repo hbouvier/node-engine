@@ -1,0 +1,13 @@
+{
+    "author"      : "Henri Bouvier",
+    "name"        : "node-engine-tests",
+    "description" : "Tests for the server Engine using cluster",
+    "version"     : "0.0.1",
+    "engines"              : {
+        "node" : ">= 0.8.0"
+    },
+    "dependencies": {
+        "express"          : "latest",
+        "node-diagnostics" : "latest"
+    }
+}
