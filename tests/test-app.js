@@ -1,7 +1,5 @@
 module.exports = function () {
-    var diag    = require('node-diagnostics'),
-        express = require('express'),
-        app     = express();
+    var app = require('express')();
     
     /**
      * Start the Web Server to provide both the HTML frontend and the JSON Web
@@ -22,8 +20,6 @@ module.exports = function () {
     }
 
     return {
-        "setLevel"      : function (level) { diag = diag.setLevel(level); },
-        "unshiftPrefix" : diag.unshiftPrefix,
         "start"         : start
     };
 }();

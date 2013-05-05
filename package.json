@@ -17,6 +17,7 @@
         "node" : ">= 0.8.0"
     },
     "dependencies": {
-        "node-diagnostics" : "latest"
+        "winston" : ">= 0.7.1",
+        "q"       : ">= 0.9.3"
     }
 }
