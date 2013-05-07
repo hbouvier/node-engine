@@ -17,9 +17,11 @@ var winston = require('winston'),
     engine = require('../lib/engine'),
     script = __dirname + '/test-app',
     opts   = {
-        "workers" : 1,
-        "port"    : 3000,
-        "watch"   : true
+        "workers"          : 1,
+        "port"             : 3000,
+        "watch"            : true,
+        "startTimeoutInMs" : 15000,
+        "stopTimeoutInMs"  : 15000
     },
     server = engine(config);
 
@@ -31,7 +33,7 @@ server.start(script, opts).then(function () {
             process.exit(0);
         })
 
-    }, 3000);
+    }, 30000);
 }).fail(function () {
         console.log('Yikes');
         process.exit(-1);
