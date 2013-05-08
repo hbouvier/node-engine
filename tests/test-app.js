@@ -14,7 +14,7 @@ module.exports = function () {
     function start(options) {
         app.get('/', function(req, res) {
             res.end('Hello World');
-        })
+        });
         
         app.listen(options.port);
     }
