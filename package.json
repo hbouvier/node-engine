@@ -19,5 +19,12 @@
     "dependencies": {
         "winston" : ">= 0.7.1",
         "q"       : ">= 0.9.3"
+    },
+    "devDependencies" : {
+        "complexity-report" : "latest"
+    },
+    "scripts": {
+        "test": "node node_modules/complexity-report/src/cli.js --maxcc 15 lib/engine.js",
+        "test": "node tests/complexityTest.js"
     }
 }
