@@ -33,7 +33,18 @@ server.start(__dirname + '/test-app').then(function () {
             setTimeout(function () {
                 server.shutdown().then(function () {
                     console.log('*************** server shutdown successfully! ***************');
-                    process.exit(0);
+                    server.start(__dirname + '/test-app').then(function () {
+                        console.log('*************** server started (2) successfully! ***************');
+                        server.stop().then(function () {
+                            console.log('*************** server STOPPED successfully! ***************');                        
+                        }).fail(function() {
+                            console.log('*************** server FAILED TO STOPPED! ***************');                        
+                            process.exit(0);
+                        }).done();
+                    }).fail(function () {
+                        console.log('*************** server FAILED TO START! ***************');                        
+                        process.exit(0);
+                    }).done();
                 }).fail(function () {
                     console.log('*************** server FAILED to shutdown miserably! ***************');
                     process.exit(0);
