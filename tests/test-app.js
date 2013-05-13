@@ -1,5 +1,16 @@
 module.exports = function () {
-    var app = require('express')();
+    var app = require('express')(),
+        monitor = require('node-network-monitor')({
+            "statsd" : {
+                "host"   : "localhost",
+                "port"   : 8125,
+                "domain" : "engine-test"
+            },
+            "syslogd" : {
+                "host" : "localhost",
+                "port" : 514
+            }
+        });
     
     /**
      * Start the Web Server to provide both the HTML frontend and the JSON Web
@@ -16,7 +27,7 @@ module.exports = function () {
             res.end('Hello World');
         });
         
-        app.listen(options.port);
+        monitor.app(app.listen(options.port));
     }
 
     return {
