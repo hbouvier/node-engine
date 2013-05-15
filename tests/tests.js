@@ -17,9 +17,7 @@ var winston = require('winston'),
         "startTimeoutInMs"    : 5000,
         "shutdownTimeoutInMs" : 5000,
         "stopTimeoutInMs"     : 1000,
-        "options" : {
-            "port"             : process.env.PORT || 3000
-        }
+        "port"             : process.env.PORT || 3000
     },
     engine = require('../lib/engine'),
     server = engine(config);

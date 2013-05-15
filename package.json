@@ -17,8 +17,9 @@
         "node" : ">= 0.8.0"
     },
     "dependencies": {
-        "winston" : ">= 0.7.1",
-        "q"       : ">= 0.9.3"
+        "winston"      : ">= 0.7.1",
+        "q"            : ">= 0.9.3",
+        "node-options" : "latest"
     },
     "devDependencies" : {
         "complexity-report" : "latest"
@@ -26,5 +27,15 @@
     "scripts": {
         "test": "node node_modules/complexity-report/src/cli.js --maxcc 15 lib/engine.js",
         "test": "node tests/complexityTest.js"
+    },
+    "configuration" : {
+        "name"    : "engine",
+        "workers" : 1,
+        "port"    : 3000,
+        "level"   : "info",
+        "script"  : "",
+        "startTimeoutInMs"    : 5000,
+        "shutdownTimeoutInMs" : 5000,
+        "stopTimeoutInMs"     : 1000
     }
 }
