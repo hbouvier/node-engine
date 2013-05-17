@@ -18,6 +18,7 @@ var winston = require('winston'),
         "shutdownTimeoutInMs" : 5000,
         "stopTimeoutInMs"     : 1000,
         "script": __dirname + '/test-app',
+        "scriptConfig" : {},
         "port"             : process.env.PORT || 3000
     },
     engine = require('../lib/engine'),
@@ -62,6 +63,4 @@ server.start().then(function () {
     }).done(function () {
         console.log('********************* See ya next time ************************');
     });
-} else { 
-    console.log('worker');
 }
