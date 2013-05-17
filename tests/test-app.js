@@ -23,6 +23,7 @@ module.exports = function () {
      * @param   id: when using clustering, this is the 'index' of this worker
      */
     function start(options) {
+        console.log('test-app|start: ', options);
         app.get('/', function(req, res) {
             res.end('Hello World');
         });
