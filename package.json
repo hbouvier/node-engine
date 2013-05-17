@@ -26,7 +26,8 @@
     },
     "scripts": {
         "test": "node node_modules/complexity-report/src/cli.js --maxcc 15 lib/engine.js",
-        "test": "node tests/complexityTest.js"
+        "test": "node tests/complexityTest.js",
+        "test": "node tests/tests.js 1"
     },
     "configuration" : {
         "name"    : "engine",

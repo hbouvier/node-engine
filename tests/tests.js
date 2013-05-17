@@ -1,18 +1,18 @@
 var winston = require('winston'),
     config = {
-        transports : [
+        "logger" : new (winston.Logger)({transports: [
                 new (winston.transports.Console)({
                                                     "level"    : "debug",
                                                     "json"     : false,
                                                     "colorize" : true
                 }),
                 new (winston.transports.File)({
-                                                    "filename" : "test.log",
+                                                    "filename" : __dirname + "/../log/test.log",
                                                     "level"    : "debug",
                                                     "json"     : true,
                                                     "colorize" : false
                 })
-            ],
+            ]}),
         "workers"          : (process.argv.length === 3 ? process.argv[2] : (require('os').cpus().length || 1)),
         "startTimeoutInMs"    : 5000,
         "shutdownTimeoutInMs" : 5000,
