@@ -17,12 +17,14 @@ var winston = require('winston'),
         "startTimeoutInMs"    : 5000,
         "shutdownTimeoutInMs" : 5000,
         "stopTimeoutInMs"     : 1000,
+        "script": __dirname + '/test-app',
         "port"             : process.env.PORT || 3000
     },
     engine = require('../lib/engine'),
     server = engine(config);
 
-server.start(__dirname + '/test-app').then(function () {
+if (server) {
+server.start().then(function () {
     console.log('*************** server started successfully! ***************');
 
     setTimeout(function () {
@@ -60,3 +62,6 @@ server.start(__dirname + '/test-app').then(function () {
     }).done(function () {
         console.log('********************* See ya next time ************************');
     });
+} else { 
+    console.log('worker');
+}
