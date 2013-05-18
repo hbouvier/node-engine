@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+/**
+ * Simple wrapper script used when installing the High Availability Engine
+ * globally through NPM. 
+ *
+ * This wrapper can invoke an already existing 'server' script to make it
+ * cluster aware.
+ * 
+ */
+var path = require('path'),
+    fs   = require('fs'),
+    lib  = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
+
+require(lib + '/main.js');

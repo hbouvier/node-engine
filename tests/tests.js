@@ -1,30 +1,31 @@
 var winston = require('winston'),
     config = {
-        transports : [
+        "logger" : new (winston.Logger)({transports: [
                 new (winston.transports.Console)({
                                                     "level"    : "debug",
                                                     "json"     : false,
                                                     "colorize" : true
                 }),
                 new (winston.transports.File)({
-                                                    "filename" : "test.log",
+                                                    "filename" : __dirname + "/../log/test.log",
                                                     "level"    : "debug",
                                                     "json"     : true,
                                                     "colorize" : false
                 })
-            ],
+            ]}),
         "workers"          : (process.argv.length === 3 ? process.argv[2] : (require('os').cpus().length || 1)),
         "startTimeoutInMs"    : 5000,
         "shutdownTimeoutInMs" : 5000,
         "stopTimeoutInMs"     : 1000,
-        "options" : {
-            "port"             : process.env.PORT || 3000
-        }
+        "script": __dirname + '/test-app',
+        "scriptConfig" : {},
+        "port"             : process.env.PORT || 3000
     },
     engine = require('../lib/engine'),
     server = engine(config);
 
-server.start(__dirname + '/test-app').then(function () {
+if (server) {
+server.start().then(function () {
     console.log('*************** server started successfully! ***************');
 
     setTimeout(function () {
@@ -62,3 +63,4 @@ server.start(__dirname + '/test-app').then(function () {
     }).done(function () {
         console.log('********************* See ya next time ************************');
     });
+}
