@@ -2,7 +2,7 @@
     "author"      : "Henri Bouvier",
     "name"        : "node-engine",
     "description" : "A server Engine using cluster",
-    "version"     : "0.0.2",
+    "version"     : "0.0.3",
     "repository"  : {
         "type" : "git",
         "url"  : "https://github.com/hbouvier/node-engine.git"
@@ -19,7 +19,7 @@
     "dependencies": {
         "winston"      : ">= 0.7.1",
         "q"            : ">= 0.9.3",
-        "node-options" : "latest"
+        "node-options" : ">= 0.0.2"
     },
     "devDependencies" : {
         "complexity-report" : "latest"
