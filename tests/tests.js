@@ -5,12 +5,6 @@ var winston = require('winston'),
                                                     "level"    : "debug",
                                                     "json"     : false,
                                                     "colorize" : true
-                }),
-                new (winston.transports.File)({
-                                                    "filename" : __dirname + "/../log/test.log",
-                                                    "level"    : "debug",
-                                                    "json"     : true,
-                                                    "colorize" : false
                 })
             ]}),
         "workers"          : (process.argv.length === 3 ? process.argv[2] : (require('os').cpus().length || 1)),
