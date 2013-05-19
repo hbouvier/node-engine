@@ -1,3 +1,4 @@
+// curl http://engine.beeker.c9.io/
 var winston = require('winston'),
     config = {
         "logger" : new (winston.Logger)({transports: [
